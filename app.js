@@ -1,4 +1,3 @@
-/*tag3*/
 /**
  * Module dependencies.
  */
