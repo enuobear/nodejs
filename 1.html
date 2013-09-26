@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8" />
+	<meta name="format-detection" content="telephone=no" />
+	<meta name="viewport" content="width=320, initial-scale=1, minimum-scale=1, maximum-scale=1, user-scalable=1" />
+	<meta name="apple-mobile-web-app-capable" content="yes" />
+	<meta name="apple-mobile-web-app-status-bar-style" content="black" />
+	<title>Card</title>
+	<style type="text/css">
+		*{ padding:0; margin:0; }
+	</style>
+</head>
+<body>
+<div style="margin:10px;border:1px dashed #000;background:#eee;line-height:20px;font-size:12px;padding:10px;display:block;">
+    ./gccenv i18n csv-merge conf/gcard/locales/ko.csv conf/gcard/locales/ko.ver/ko.6-5-3.diff.lightweight.csv > conf/gcard/locales/tmp.csv <br>
+    mv conf/gcard/locales/tmp.csv conf/gcard/locales/ko.csv
+</div>
+<div style="margin:10px;border:1px dashed #000;background:#eee;line-height:20px;font-size:12px;padding:10px;display:block;">
+    ./gccenv i18n yaml-merge conf/gcard/locales/ko.yaml conf/gcard/locales/ko.ver/ko.6-5-3.diff.yaml > conf/gcard/locales/tmp.yaml<br>
+    mv conf/gcard/locales/tmp.yaml conf/gcard/locales/ko.yaml
+</div>
+<div style="margin:10px;border:1px dashed #000;background:#eee;line-height:20px;font-size:12px;padding:10px;display:block;">
+    ./gccenv i18n yaml-merge conf/gcard/locales/ko_sp.yaml conf/gcard/locales/ko.ver/ko_sp.6-5-3.diff.yaml > conf/gcard/locales/tmp_sp.yaml<br>
+    mv conf/gcard/locales/tmp_sp.yaml conf/gcard/locales/ko_sp.yaml
+</div>
+<div style="margin:10px;border:1px dashed #000;background:#eee;line-height:20px;font-size:12px;padding:10px;display:block;">
+    ./gccenv i18n csv-merge conf/gcard/locales/ko.ver/ko_db.6-5-3.csv conf/gcard/locales/ko.ver/ko_db.6-5-3.diff.lightweight.csv > tmp.csv<br>
+    mv tmp.csv conf/gcard/locales/ko.ver/ko_db.6-5-3.csv<br>
+    ./gccenv i18n merge-db-text -location kr -base-csv conf/gcard/locales/ko.ver/ko_db.6-5-3.csv -pkmap-csv conf/gcard/locales/ko.ver/ko_db.map.6-5-3.csv
+</div>
+</div>
+</body>
+</html>
+
