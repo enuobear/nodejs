@@ -1,8 +1,0 @@
-xslate.textid/sp/notification/show/ru_502.html
-html.kr/themes/event/ru502/banner.jpg
-html.kr/themes/event/ru502/card_1.jpg
-html.kr/themes/event/ru502/card_2.jpg
-html.kr/themes/event/s100/1.jpg
-html.kr/themes/event/s100/card_1.jpg
-html.kr/themes/event/s100/card_2.jpg
-xslate.textid/sp/notification/show/event_s100.html

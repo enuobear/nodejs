@@ -1,9 +1,0 @@
-mgsys@krwhite_web2:/home/mgsys/sg-gcard-kr/
-mgsys@krwhite_web3:/home/mgsys/sg-gcard-kr/
-mgsys@krwhite_web4:/home/mgsys/sg-gcard-kr/
-mgsys@krwhite_web5:/home/mgsys/sg-gcard-kr/
-mgsys@krwhite_web6:/home/mgsys/sg-gcard-kr/
-mgsys@krwhite_web7:/home/mgsys/sg-gcard-kr/
-mgsys@krwhite_web8:/home/mgsys/sg-gcard-kr/
-mgsys@krwhite_web9:/home/mgsys/sg-gcard-kr/
-mgsys@krwhite_web10:/home/mgsys/sg-gcard-kr/

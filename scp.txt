@@ -1,1 +1,0 @@
-for i in $(cat file.txt); do for j in $(cat host.txt); do echo scp $i $j$i; done; done
