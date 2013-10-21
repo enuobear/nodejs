@@ -154,7 +154,7 @@
 
 	<nav>
 		<h1>SPECIAL</h1>
-		<li class="current"></li>
+		<li data-dir="event507">event 507</li>
 		<li data-dir="ru502">ru502</li>
 		<li data-dir="w/40">w40</li>
 		<li data-dir="w/39">w39</li>
@@ -174,9 +174,12 @@
 				$nav  	 = $("nav li"),
 				$total   = $("h2"),
 				$loading = $("hgroup"),
-				$host    = "http://<?php echo $_SERVER['HTTP_HOST']; ?>:1111/";
-
-			show("ru502");
+				$host    = "http://<?php echo $_SERVER['HTTP_HOST']; ?>:1111/",
+				$current = $nav.eq(0),
+				$current_dir = $current.attr("data-dir");
+			
+			$current.addClass("current");
+			show($current_dir);
 
 			$nav.click(function(){
 				var dir = $(this).attr("data-dir");
