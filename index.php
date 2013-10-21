@@ -151,16 +151,18 @@
 	<script type="text/javascript" src="jquery-1.5.2.min.js"></script>
 </head>
 <body>
+
 	<nav>
 		<h1>SPECIAL</h1>
 		<li class="current"></li>
-		<li data-dir="w/39">w39</li>
-		<li data-dir="w/40">w40</li>
 		<li data-dir="ru502">ru502</li>
+		<li data-dir="w/40">w40</li>
+		<li data-dir="w/39">w39</li>
 	</nav>
 	<section>
 		<h2></h2>
-		<ul></ul>
+		<ul>
+		</ul>
 	<section>
 	<hgroup>
 		<div class="circle"></div>
@@ -172,7 +174,7 @@
 				$nav  	 = $("nav li"),
 				$total   = $("h2"),
 				$loading = $("hgroup"),
-				$host    = "http://192.168.58.75:1111/";
+				$host    = "http://<?php echo $_SERVER['HTTP_HOST']; ?>:1111/";
 
 			show("ru502");
 
