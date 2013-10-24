@@ -1,10 +1,17 @@
 #! /bin/sh
 
-cardpath="/Users/xiongshaole/Movies/jpg/"
+cardPath="/Users/xiongshaole/Movies/jpg/"
+tmpFile="${cardPath}tmp"
 
-ls ${cardpath} | grep -v '.txt' > ${cardpath}1.txt
+ls ${cardPath} | grep -v 'tmp' | grep -v '_special' > ${tmpFile}
 
-for i in $(cat ${cardpath}1.txt | awk -F '.' '{print $1}')
-do
-echo mv ${cardpath}$i\.jpg ${cardpath}$i\_$1\_special\.jpg
-done
+if [ ! -s ${tmpFile} ]; then 
+	echo "no file change!"
+else
+	for i in $(cat ${tmpFile} | awk -F '.' '{print $1}')
+	do
+		echo $i\_$1\_special\.jpg
+		mv ${cardPath}$i\.jpg ${cardPath}$i\_$1\_special\.jpg
+	done
+fi
+rm ${tmpFile}
