@@ -1,6 +1,10 @@
 #! /bin/sh
 
-for i in $(cat ~/Movies/jpg/1.txt | awk -F '.' '{print $1}')
+cardpath="/Users/xiongshaole/Movies/jpg/"
+
+ls ${cardpath} | grep -v '.txt' > ${cardpath}1.txt
+
+for i in $(cat ${cardpath}1.txt | awk -F '.' '{print $1}')
 do
-mv ~/Movies/jpg/$i\.jpg ~/Movies/jpg/$i\_$1\_special\.jpg
+echo mv ${cardpath}$i\.jpg ${cardpath}$i\_$1\_special\.jpg
 done
