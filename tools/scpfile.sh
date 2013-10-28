@@ -31,13 +31,12 @@ fi
 
 #push files
 if [ $1 == 'push' ]; then
-	if [ ! $4 ]; then
-		echo scp -i ~/kr_white.pem ~/sg-gcard-kr/$3 mgsys@"$hostip":~/sg-gcard-kr/$3
-		scp -r -i ~/kr_white.pem ~/sg-gcard-kr/$3 mgsys@"$hostip":~/sg-gcard-kr/$3
-	else
-		echo scp -i ~/kr_white.pem ~/sg-gcard-kr/$3 mgsys@"$hostip":~/sg-gcard-kr/$4
-		scp -i ~/kr_white.pem ~/sg-gcard-kr/$3 mgsys@"$hostip":~/sg-gcard-kr/$4
-	fi
+	arr=( $@ )
+	for i in "${arr[@]:2}"
+	do
+		echo scp -i ~/kr_white.pem ~/sg-gcard-kr/${i} mgsys@"${hostip}":~/sg-gcard-kr/${i}
+		scp -i ~/kr_white.pem ~/sg-gcard-kr/${i} mgsys@"${hostip}":~/sg-gcard-kr/${i}
+	done
 fi
 
 #open files
