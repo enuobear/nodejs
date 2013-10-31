@@ -24,7 +24,7 @@ if [ $1 == 'get' ]; then
 	for i in "${arr[@]:2}"
 	do
 		echo scp -i ~/kr_white.pem mgsys@"${hostip}":~/sg-gcard-kr/${i} ~/sg-gcard-kr/${i}
-		scp -i ~/kr_white.pem mgsys@"${hostip}":~/sg-gcard-kr/${i} ~/sg-gcard-kr/${i}
+		scp -r -i ~/kr_white.pem mgsys@"${hostip}":~/sg-gcard-kr/${i} ~/sg-gcard-kr/${i}
 	done
 fi
 
