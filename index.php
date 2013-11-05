@@ -9,7 +9,7 @@
 		body{
 			font-size:12px;
 			background:#f8f8f8;
-			font-family:Arial;
+			font-family:Arial Narrow;
 			-webkit-text-size-adjust:none;
 			-webkit-tap-highlight-color:rgba(0,0,0,0);
 		}
@@ -51,7 +51,7 @@
 			display:block;
 			height:40px;
 			width:10px;
-			background:#000;
+			background:#ffd800;
 			position:absolute;
 			left:-10px;
 			top:0;
@@ -169,6 +169,64 @@
 		<div class="circle1"></div>
 	</hgroup>
 	<script type="text/javascript">
+/*
+	$(function(){
+
+		var arr = [
+            {
+                treatFrameSeq: "2", 
+                kbn: "1", 
+                date: "8_10_2010", 
+                treatPeriod: "1", 
+                dTreatFrameList: [
+                    {
+                    	irradRound: "16",
+                    	protocolName: "aa"
+                    }, 
+                    {
+                    	irradRound: "11",
+                    	protocolName: "bb"
+                    }
+                ]
+            },  
+            { 
+                treatFrameSeq: "3", 
+                kbn: "1", 
+                date: "8_11_2010", 
+                treatPeriod: "1", 
+                dTreatFrameList: [
+                    {
+                    	irradRound: "16",
+                    	protocolName: "cc"
+                    }
+                ]
+            }
+        ];
+        var dTreatFramList = {};
+        var id = 0;
+        function gogogo(array){
+            var obj = {};
+            $.each(array, function(index, value){
+				alert(value);
+                $.each(value, function(key, _value){
+                    //alert(key);
+                    if(key == "dTreatFrameList"){
+                        $.each(_value, function(_index, __value){
+                            //这里的每个__value就是lz所需要的dTreatFramList中的某个键值对
+                            //这里的id  LZ根据自己的需求设定吧
+                            //alert(_index);
+                            obj[id.toString()] = __value;
+                            id++;
+                        });
+                    }
+                });
+            });
+            return obj;
+        }
+                     
+        dTreatFramList = gogogo(arr);
+	});
+	*/
 		$(function(){
 			var $list 	 = $("ul"),
 				$nav  	 = $("nav li"),
@@ -208,9 +266,27 @@
 							"display": "none"
 						})
 						$total.html("total:"+json.length);
+
+						// for(var i=0; i<json.length; i++){
+						// 	for(var key in json[i]){
+						// 		if(i==0){
+						// 			alert(key);
+						// 		}
+						// 	}
+						// }
+
 						$.each(json,function(index,entry){
 							$str += "<li><img src="+$host+entry.fileDir+"/"+entry.fileName+" />"+entry.fileName+"</li>";
 						});
+
+						/*						
+						for(var i=0; i<json.length; i++){
+							alert(json[i].fileName);
+							for(var key in json[i]){
+								alert(key);
+							}
+						}
+						*/
 						$list.append($str);
 					},
 					error: function(json){
