@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8" />
+	<meta name="format-detection" content="telephone=no" />
+	<meta name="viewport" content="width=320, initial-scale=1, minimum-scale=1, maximum-scale=1, user-scalable=1" />
+	<meta name="apple-mobile-web-app-capable" content="yes" />
+	<meta name="apple-mobile-web-app-status-bar-style" content="black" />
+	<title>Card</title>
+	<style type="text/css">
+		*{ padding:0; margin:0; }
+		.energy-btn div{
+			display:block;
+			height:100px;
+			width:100px;
+			text-align:center;
+			line-height:100px;
+			color:#fff;
+			background:red;
+			margin:0 auto;
+			margin-bottom:10px;
+		}
+	</style>
+</head>
+<body>
+
+<style type="text/css">
+dl,dt,dd{ padding:0; margin:0; }
+.app_list{ border:1px solid #bbb; border-bottom:none; border-right:none; font-size:12px; display:table; width:100%; margin:0 auto; }
+.app_list dt,
+.app_list dd{ display:table-row; }
+.app_list dt div,
+.app_list dd div{ display:table-cell; text-align:center; }
+.app_list dt div{
+	line-height:30px; font-weight:bold; text-align:center; border-bottom:1px solid #bbb; border-right:1px solid #bbb; background:#ccc;
+}
+.app_list dd div{
+	line-height:25px; border-bottom:1px solid #bbb; border-right:1px solid #bbb;
+}
+</style>
+<dl class="app_list">
+<dt><div>순위</div><div>닉네임</div><div>ID</div><div>피해량</div></dt>
+<dd><div>1위</div><div>아르칸트</div><div>3854300</div><div>200985540</div></dd>
+<dd><div>2위</div><div>다이아몬드</div><div>4951791</div><div>140364400</div></dd>
+<dd><div>3위</div><div>가가미</div><div>1545326</div><div>118581300</div></dd>
+<dd><div>4위</div><div>[모건]울보</div><div>1661550</div><div>115638760</div></dd>
+<dd><div>5위</div><div>모ba게망해라</div><div>4888900</div><div>111182440</div></dd>
+<dd><div>6위</div><div>신진석</div><div>1973478</div><div>97243245</div></dd>
+<dd><div>7위</div><div>쏘온</div><div>5030652</div><div>95234160</div></dd>
+<dd><div>8위</div><div>[모건]아마테</div><div>769258</div><div>94238310</div></dd>
+<dd><div>9위</div><div>Hoya♡</div><div>741912</div><div>88401930</div></dd>
+<dd><div>10위</div><div>김가은</div><div>2487540</div><div>79777580</div></dd>
+</dl>
+
+<dl class="app_list">
+<dt><div>순위</div><div>닉네임</div><div>ID</div><div>피해량</div></dt>
+<dd><div>1위</div><div>[모건]알카드</div><div>3416497</div><div>2016616200</div></dd>
+<dd><div>2위</div><div>신진석</div><div>1973478</div><div>1880036070</div></dd>
+<dd><div>3위</div><div>Eilis</div><div>2854447</div><div>1749661020</div></dd>
+<dd><div>4위</div><div>카르바스</div><div>1446138</div><div>1745151560</div></dd>
+<dd><div>5위</div><div>다이아몬드</div><div>4951791</div><div>1740518560</div></dd>
+<dd><div>6위</div><div>[모건]로시</div><div>733554</div><div>1543280040</div></dd>
+<dd><div>7위</div><div>[F.G.D]크로</div><div>5035916</div><div>1541816640</div></dd>
+<dd><div>8위</div><div>히야써니</div><div>3667415</div><div>1448926710</div></dd>
+<dd><div>9위</div><div>geppyx</div><div>4897659</div><div>1369951680</div></dd>
+<dd><div>10위</div><div>[모건]히이로</div><div>4929106</div><div>1348811240</div></dd>
+</dl>
+
+<div class="energy-btn">
+	<div data-url="http://www.baidu.com">1</div>
+	<div data-url="http://www.google.com">2</div>
+	<div data-url="http://www.163.com">3</div>
+</div>
+<script>
+console.log(Math.round(Math.random()*(Math.random()*15)+Math.round(Math.random()*15)+3));
+console.log(Math.round(Math.random()*(Math.random()*15)+Math.round(Math.random()*15)+3));
+console.log(Math.round(Math.random()*(Math.random()*15)+Math.round(Math.random()*15)+3));
+console.log(Math.round(Math.random()*(Math.random()*15)+Math.round(Math.random()*15)+3));
+console.log(Math.round(Math.random()*(Math.random()*15)+Math.round(Math.random()*15)+3));
+(function(){
+    var app = {
+    	init: function(){
+    		var self = this;
+			var btn = document.querySelectorAll(".energy-btn div"),
+				len = btn.length;
+
+			for(var i=0; i<len; i++){
+				btn[i].addEventListener("click", function(){
+					var oldTime =  self.getCookie("clickTime"),
+						newTime = new Date().getTime();
+					self.setCookie("clickTime", newTime);
+					var diffTime = newTime - oldTime - 10000;
+					if(diffTime > 0){
+						window.location.href = this.getAttribute("data-url"); 
+					}else{
+						alert(diffTime);
+					}
+				}, false);
+			}
+    	},
+		setCookie: function(name,value) {
+		    var Days = 1;
+		    var exp  = new Date(); 
+		    exp.setTime(exp.getTime() + Days*24*60*60*1000);
+		    document.cookie = name + "="+ escape (value) + ";expires=" + exp.toGMTString();
+		},
+        getCookie: function(name) {
+            var arr = document.cookie.match(new RegExp("(^| )" + name + "=([^;]*)(;|$)"));
+            if (arr != null)
+                return unescape(arr[2]);
+            return null;
+        }
+    };
+    app.init();
+})();
+</script>
+</body>
+</html>
+
