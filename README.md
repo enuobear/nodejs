@@ -1,4 +1,6 @@
 #custom
+	配置.bash_profile alias
+	alias custom="~/nodejs/tools/custom.sh" 
 
 ###copy_item
 	custom item_to_item [filename] [filename]
