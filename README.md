@@ -7,6 +7,7 @@
 	custom shop_to_item [filename] [filename]
 
 ###banner
+	custom [原图片名称] [目标图片名称]
 
 ###scp_get/scp_push
 	custom scp_get/scp_push [主机名] [文件名列表 ...]
