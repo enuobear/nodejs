@@ -10,11 +10,12 @@ pathBanner=~/sg-gcard-kr/html.kr/i/gcard/gacha/hall_banner
 
 #card images
 pathCard=~/Movies/jpg/
-tmpFile="${cardPath}tmp"
+tmpFile=${pathCard}tmp
 
 #scp file
-if [ ${command}=='scp_get' || ${command}=='scp_push' ]; then
-	case $2 in
+function check_host()
+{
+	case $1 in
 		dev02)
 			hostip="54.249.47.219"
 			;;
@@ -28,32 +29,29 @@ if [ ${command}=='scp_get' || ${command}=='scp_push' ]; then
 			hostip="54.250.141.112"
 			;;
 	esac
-fi
+	# return $hostip;
+}
+
+function item_copy()
+{
+	echo cp $1/$2_400.jpg $3/$4_400.jpg
+	echo cp $1/$2_200.jpg $3/$4_200.jpg
+	echo cp $1/$2_100.jpg $3/$4_100.jpg
+	echo cp $1/$2_50.jpg  $3/$4_50.jpg
+}
 
 case ${command} in
 	item_to_item)
-		cp ${pathItem}/$2\_400.jpg ${pathItem}/$3\_400.jpg 
-		cp ${pathItem}/$2\_200.jpg ${pathItem}/$3\_200.jpg 
-		cp ${pathItem}/$2\_100.jpg ${pathItem}/$3\_100.jpg 
-		cp ${pathItem}/$2\_50.jpg ${pathItem}/$3\_50.jpg 
+		item_copy ${pathItem} $2 ${pathItem} $3;
 		;;
 	item_to_shop)
-		cp ${pathItem}/$2\_400.jpg ${pathShop}/$3\_400.jpg 
-		cp ${pathItem}/$2\_200.jpg ${pathShop}/$3\_200.jpg 
-		cp ${pathItem}/$2\_100.jpg ${pathShop}/$3\_100.jpg 
-		cp ${pathItem}/$2\_50.jpg ${pathShop}/$3\_50.jpg 
+		item_copy ${pathItem} $2 ${pathShop} $3;
 		;;
 	shop_to_shop)
-		cp ${pathShop}/$2\_400.jpg ${pathShop}/$3\_400.jpg 
-		cp ${pathShop}/$2\_200.jpg ${pathShop}/$3\_200.jpg 
-		cp ${pathShop}/$2\_100.jpg ${pathShop}/$3\_100.jpg 
-		cp ${pathShop}/$2\_50.jpg ${pathShop}/$3\_50.jpg 
+		item_copy ${pathShop} $2 ${pathShop} $3;
 		;;
 	shop_to_item)
-		cp ${pathShop}/$2\_400.jpg ${pathItem}/$3\_400.jpg 
-		cp ${pathShop}/$2\_200.jpg ${pathItem}/$3\_200.jpg 
-		cp ${pathShop}/$2\_100.jpg ${pathItem}/$3\_100.jpg 
-		cp ${pathShop}/$2\_50.jpg ${pathItem}/$3\_50.jpg 
+		item_copy ${pathShop} $2 ${pathItem} $3;
 		;;
 	banner)
 		cp ${pathBanner}/$2\_190.jpg ${pathBanner}/$3\_190.jpg
@@ -63,15 +61,17 @@ case ${command} in
 		cp ${pathBanner}/$2\_640.jpg ${pathBanner}/$3\_640.jpg
 		;;
 	scp_get)
+		check_host $2;
 		for i in "${arr[@]:2}"
 		do
-			echo scp -r -i ~/kr_white.pem mgsys@"${hostip}":~/sg-gcard-kr/${i} ~/sg-gcard-kr/${i}
+			scp -r -i ~/kr_white.pem mgsys@"${hostip}":~/sg-gcard-kr/${i} ~/sg-gcard-kr/${i}
 		done
 		;;
 	scp_push)
+		check_host $2;
 		for i in "${arr[@]:2}"
 		do
-			scp -i ~/kr_white.pem ~/sg-gcard-kr/${i} mgsys@"${hostip}":~/sg-gcard-kr/${i}
+			scp -r -i ~/kr_white.pem ~/sg-gcard-kr/${i} mgsys@"${hostip}":~/sg-gcard-kr/${i}
 		done
 		;;
 	csv_merge_ko)
@@ -83,12 +83,12 @@ case ${command} in
 		./gccenv i18n csv-merge $2 $3 > $4
 		;;
 	card_mv)
-		ls ${pathCard} | grep -v 'tmp' | grep -v '_special' | grep -v '_' > ${tmpFile}
+		ls ${pathCard} | grep -v 'tmp' | grep -v '_special' | grep -v '_'  > ${tmpFile}
 
 		if [ ! -s ${tmpFile} ]; then 
 			echo "no file change!"
 		else
-			for i in $(cat ${tmpFile} | awk -F '.' '{print $2}')
+			for i in $(cat ${tmpFile} | awk -F '.' '{print $1}')
 			do
 				if [ ! $3 ]; then
 					echo $i\_$2\_special\.jpg
