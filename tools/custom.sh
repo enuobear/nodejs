@@ -34,10 +34,14 @@ function check_host()
 
 function item_copy()
 {
-	echo cp $1/$2_400.jpg $3/$4_400.jpg
-	echo cp $1/$2_200.jpg $3/$4_200.jpg
-	echo cp $1/$2_100.jpg $3/$4_100.jpg
-	echo cp $1/$2_50.jpg  $3/$4_50.jpg
+	#find $1 -name "$2*" > ~/tmp
+	ls -1 $1 | grep $2 > ~/tmp
+	for i in $(cat ~/tmp | awk -F "$2" '{print $2}')
+	do
+		cp $1/$2$i $3/$4$i
+	done
+	rm ~/tmp
+	echo "copy item ok!"
 }
 
 case ${command} in
